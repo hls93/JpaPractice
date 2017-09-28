@@ -2,10 +2,13 @@ package com.ironyard.jpapractice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.List;
+import static javax.measure.unit.SI.KILOGRAM;
+import javax.measure.quantity.Mass;
+import org.jscience.physics.model.RelativisticModel;import java.util.ArrayList;
+import org.jscience.physics.amount.Amount;import java.util.List;
+import java.util.Map;
 
 @RestController
 public class TableNameRestController {
@@ -50,5 +53,13 @@ public class TableNameRestController {
     public List<TableName> tableNameList(){
 
         return tableNameRepo.findAll();
+    }
+
+    @RequestMapping("/hello")
+    String hello(Map<String, Object> model) {
+        RelativisticModel.select();
+        Amount<Mass> m = Amount.valueOf("12 GeV").to(KILOGRAM);
+        model.put("science", "E=mc^2: 12 GeV = " + m.toString());
+        return "hello";
     }
 }

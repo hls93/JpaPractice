@@ -1,7 +1,6 @@
 package com.ironyard.jpapractice;
 
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 
 
 @RestController
@@ -45,7 +43,7 @@ public class TableNameRestController {
     }
 
     @GetMapping("/words")
-    public TableName tableName(){
+    public TableName tableName() {
         TableName table = new TableName();
         table.setId(2);
         table.setName("yigy");
@@ -54,10 +52,14 @@ public class TableNameRestController {
     }
 
     @GetMapping("/listTableNames")
-    public List<TableName> tableNameList(){
+    public List<TableName> tableNameList() {
 
         return tableNameRepo.findAll();
     }
 
 
+    @GetMapping("/new")
+    public Integer num() {
+        return 5;
+    }
 }
